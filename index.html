@@ -1,52 +1,205 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="UTF-8" />
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Eid Greetings</title>
-    <style>
-      .word-animation {
-        opacity: 0;
-        animation: fadeIn 2s forwards;
-      }
+    <title>index</title>
+    <script src="vara.min.js"></script>
 
-      @keyframes fadeIn {
-        from {
-          opacity: 0;
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      body {
+        background: #d7fbe8;
+        background-size: cover;
+        background-position: center;
+        height: 100vh;
+        overflow: hidden;
+        color: black;
+      }
+      #container {
+        width: 100%;
+        margin: 20px auto;
+        min-height: 650px;
+        margin-top: 150px;
+        color: black;
+      }
+      @media screen and (max-width: 400px) {
+        #container {
+          width: 100%;
+          margin: 50% auto;
+          min-height: 800px;
         }
-        to {
+      }
+      .wrapper {
+        position: fixed;
+      }
+      .box div {
+        position: fixed;
+        width: 60px;
+        height: 60px;
+        background-color: transparent;
+        border: 6px solid #1fab89;
+        color: #62d2a2;
+      }
+      .box div:nth-child(1) {
+        top: 12%;
+        left: 42%;
+        animation: animate 10s linear infinite;
+      }
+      .box div:nth-child(2) {
+        top: 70%;
+        left: 50%;
+        animation: animate 7s linear infinite;
+      }
+      .box div:nth-child(3) {
+        top: 17%;
+        left: 6%;
+        animation: animate 9s linear infinite;
+      }
+      .box div:nth-child(4) {
+        top: 20%;
+        left: 60%;
+        animation: animate 10s linear infinite;
+      }
+      .box div:nth-child(5) {
+        top: 67%;
+        left: 10%;
+        animation: animate 6s linear infinite;
+      }
+      .box div:nth-child(6) {
+        top: 80%;
+        left: 70%;
+        animation: animate 12s linear infinite;
+      }
+      .box div:nth-child(7) {
+        top: 60%;
+        left: 80%;
+        animation: animate 15s linear infinite;
+      }
+      .box div:nth-child(8) {
+        top: 22%;
+        left: 25%;
+        animation: animate 16s linear infinite;
+      }
+      .box div:nth-child(9) {
+        top: 90%;
+        left: 25%;
+        animation: animate 9s linear infinite;
+      }
+      .box div:nth-child(10) {
+        top: 20%;
+        left: 80%;
+        animation: animate 5s linear infinite;
+      }
+      @keyframes animate {
+        0% {
+          transform: scale(0) translateY(0) rotate(0);
           opacity: 1;
+        }
+        100% {
+          transform: scale(1.3) translateY(-90px) rotate(360deg);
+          opacity: 0;
         }
       }
     </style>
   </head>
   <body>
-    <div id="words-container" class="word-animation">
-      <!-- Kata-kata akan ditampilkan di sini -->
+    <audio autoplay src="jaz1.mp3"></audio>
+    <div id="container"></div>
+    <a href="" class="hidden"></a>
+    <div class="wrapper">
+      <div class="box">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
     </div>
-
     <script>
-      const words = ["Selamat Hari Raya Idul Fitri", "Mohon Maaf Lahir dan Batin", "Kalo Ada Salah", "Maafin Yah", "Semoga Tahun Depan", "Bisa Lebih Baik Lagi"];
+      var fontSize = 40;
+      if (window.screen.width > 700) fontSize = 55;
+      else if (window.screen.width > 1200) fontSize = 80;
+      var vara = new Vara(
+        "#container",
+        "https://raw.githubusercontent.com/akzhy/Vara/master/fonts/Satisfy/SatisfySL.json",
+        [
+          {
+            text: "Haii",
+            y: 150,
+            delay: 900,
+            fromCurrentPosition: { y: false },
+            duration: 1000,
+          },
+          {
+            text: "Aku mau ucapin sesuatu nih",
+            y: 150,
+            fromCurrentPosition: { y: false },
+            delay: 1000,
+            duration: 2000,
+          },
+          {
+            text: "Selamat Hari Raya Idul Fitri",
+            y: 150,
+            fromCurrentPosition: { y: false },
+            delay: 800,
+            duration: 1500,
+          },
+          {
+            text: "Minaladzin walfaidzin",
+            y: 150,
+            fromCurrentPosition: { y: false },
+            delay: 1000,
+            duration: 2200,
+          },
+          {
+            text: "Mohon Maaf Lahir dan Batin",
+            y: 150,
+            fromCurrentPosition: { y: false },
+            delay: 1000,
+            duration: 3300,
+          },
+          {
+            text: "Kalo aku ada salah",
+            y: 150,
+            fromCurrentPosition: { y: false },
+            delay: 1500,
+            duration: 1800,
+          },
+          {
+            text: "Sorry ye wkwk",
+            y: 150,
+            fromCurrentPosition: { y: false },
+            delay: 1000,
+            duration: 2000,
+          },
+        ],
 
-      let index = 0;
-      const wordsContainer = document.getElementById("words-container");
-
-      function displayNextWord() {
-        if (index >= words.length) {
-          index = 0; // Jika sudah sampai ke kata terakhir, kembali ke awal
+        {
+          strokeWidth: 2,
+          color: "#62D2A2",
+          fontSize: fontSize,
+          textAlign: "center",
         }
-        wordsContainer.textContent = words[index];
-        wordsContainer.classList.remove("word-animation"); // Hapus kelas animasi
-        void wordsContainer.offsetWidth; // Trigger reflow
-        wordsContainer.classList.add("word-animation"); // Tambahkan kelas animasi kembali
-        index++;
-      }
-
-      // Tampilkan kata pertama saat halaman dimuat
-      displayNextWord();
-
-      // Tampilkan kata-kata berikutnya setiap 4 detik
-      setInterval(displayNextWord, 4000);
+      );
+      vara.ready(function () {
+        var erase = true;
+        vara.animationEnd(function (i, o) {
+          if (i == "no_erase") erase = false;
+          if (erase) {
+            o.container.style.transition = "opacity 1s 1s";
+            o.container.style.opacity = 0;
+          }
+        });
+      });
     </script>
   </body>
 </html>
