@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Eid Greetings</title>
+    <style>
+      .word-animation {
+        opacity: 0;
+        animation: fadeIn 2s forwards;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="words-container" class="word-animation">
+      <!-- Kata-kata akan ditampilkan di sini -->
+    </div>
+
+    <script>
+      const words = ["Selamat Hari Raya Idul Fitri", "Mohon Maaf Lahir dan Batin", "Kalo Ada Salah", "Maafin Yah", "Semoga Tahun Depan", "Bisa Lebih Baik Lagi"];
+
+      let index = 0;
+      const wordsContainer = document.getElementById("words-container");
+
+      function displayNextWord() {
+        if (index >= words.length) {
+          index = 0; // Jika sudah sampai ke kata terakhir, kembali ke awal
+        }
+        wordsContainer.textContent = words[index];
+        wordsContainer.classList.remove("word-animation"); // Hapus kelas animasi
+        void wordsContainer.offsetWidth; // Trigger reflow
+        wordsContainer.classList.add("word-animation"); // Tambahkan kelas animasi kembali
+        index++;
+      }
+
+      // Tampilkan kata pertama saat halaman dimuat
+      displayNextWord();
+
+      // Tampilkan kata-kata berikutnya setiap 4 detik
+      setInterval(displayNextWord, 4000);
+    </script>
+  </body>
+</html>
